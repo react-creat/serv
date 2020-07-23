@@ -7,14 +7,14 @@ app.get('/', function (req, res) {
   res.send('hello world')
 })
 
-const port = 443;
+const port = 8080;
 
 https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.cert')
 }, app)
-.listen(443, function () {
-  console.log('Example app listening on port 443! Go to https://localhost:443/')
+.listen(port, function () {
+  console.log(`Example app listening on port ${port}! Go to https://localhost:${port}/`)
 })
 
 
