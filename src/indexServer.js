@@ -10,8 +10,8 @@ app.get('/', function (req, res) {
 const port = 443;
 
 https.createServer({
-  key: fs.readFileSync('private.key', 'reis5tag////'),
-  cert: fs.readFileSync('certificate.crt')
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
 }, app)
 .listen(443, function () {
   console.log('Example app listening on port 443! Go to https://localhost:443/')
