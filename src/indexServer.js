@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
 const port = 443;
 
 https.createServer({
-  key: fs.readFileSync('private.key'),
+  key: fs.readFileSync('private.key', 'reis5tag////'),
   cert: fs.readFileSync('certificate.crt')
 }, app)
 .listen(443, function () {
