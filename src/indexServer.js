@@ -10,8 +10,6 @@ var options = {
   cert: cert
 };
 
-const app = express();
-
 var server = https.createServer(options, app);
 
 server.listen(port, () => {
