@@ -1,4 +1,24 @@
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
+const port = 8080;
+
+var key = fs.readFileSync(__dirname + '/../certs/selfsigned.key');
+var cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt');
+var options = {
+  key: key,
+  cert: cert
+};
+
+const app = express();
+
+var server = https.createServer(options, app);
+
+server.listen(port, () => {
+  console.log("server starting on port : " + port)
+});
+
+
 const bodyParser = require('body-parser');
 
 var cors = require('cors');
@@ -6,8 +26,6 @@ var cors = require('cors');
 const app = express();
 
 app.use(cors());
-
-const port = 443;
 
 const mongoose = require('mongoose');
 
@@ -33,6 +51,3 @@ app.delete('/posts/:id', Post.delete);
 
 app.put('/posts/:id', Post.update);
 
-app.listen(port, () => {
-  console.log(`Server listening at ${port}`);
-});
