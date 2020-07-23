@@ -7,12 +7,14 @@ app.get('/', function (req, res) {
   res.send('hello world')
 })
 
+const port = 443;
+
 https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.cert')
 }, app)
-.listen(3000, function () {
-  console.log('Example app listening on port 3000! Go to https://localhost:3000/')
+.listen(443, function () {
+  console.log('Example app listening on port 443! Go to https://localhost:443/')
 })
 
 
