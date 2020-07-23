@@ -1,27 +1,24 @@
-const express = require('express');
-const https = require('https');
-const fs = require('fs');
-const port = 8080;
+var express = require('express')
+var fs = require('fs')
+var https = require('https')
+var app = express()
 
-var key = fs.readFileSync(__dirname + '/../certs/selfsigned.key');
-var cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt');
-var options = {
-  key: key,
-  cert: cert
-};
+app.get('/', function (req, res) {
+  res.send('hello world')
+})
 
-var server = https.createServer(options, app);
-
-server.listen(port, () => {
-  console.log("server starting on port : " + port)
-});
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+}, app)
+.listen(3000, function () {
+  console.log('Example app listening on port 3000! Go to https://localhost:3000/')
+})
 
 
 const bodyParser = require('body-parser');
 
 var cors = require('cors');
-
-const app = express();
 
 app.use(cors());
 
